@@ -1,0 +1,28 @@
+Sub remove_repeat()
+
+#初始化#
+
+Dim rowmax As Long, a As Integer, irow As Long
+
+mtime = Timer
+rowmax = [a65536].End(xlUp).Row
+a = 1
+
+Application.ScreenUpdating = False
+
+For irow = 1 To rowmax
+#检查第1列1 - irow之间，cells(irow, 1)的取值个数#
+     cellcount = Application.WorksheetFunction.CountIf(Range(Cells(1, 1), Cells(irow, 1)), Cells(irow, 1))
+
+#若取值个数为1，说明是新的值，按顺序赋值到第2列中#
+     If cellcount = 1 Then
+         Cells(a, 2) = Cells(irow, 1)
+         a = a + 1
+     End If
+
+Next irow
+
+#检查运行时间#
+MsgBox "running time" & Timer - mtime & "s" Application.ScreenUpdating = True
+
+End Sub
