@@ -1,0 +1,23 @@
+Sub bubble_sort()
+
+#初始化#
+Dim x As Integer, y As Integer, tmp As Integer
+mtime = Timer
+
+#冒泡， y每完成一次循环，最小的数值则会冒到当前的x行#
+For x = 1 To ([a65536].End(xlUp).Row - 1)
+     For y = (x + 1) To [a65536].End(xlUp).Row
+          
+         If Cells(x, 1) > Cells(y, 1) Then
+             tmp = Cells(x, 1)
+             Cells(x, 1) = Cells(y, 1)
+             Cells(y, 1) = tmp
+             tmp = 0
+         End If
+
+     Next y
+Next x
+
+MsgBox "running time : " & vbOKOnly + vbinfomation & Timer - mtime & "s"
+
+End Sub
